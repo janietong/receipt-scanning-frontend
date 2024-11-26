@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 
 const Home = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>('');
   const [error, setError] = useState<string>('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setFileName(file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
@@ -50,6 +48,7 @@ const Home = () => {
       }
     } catch (error) {
       setError('An error occurred while uploading the image');
+      console.error(error);
     }
   };
 
